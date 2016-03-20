@@ -90,7 +90,7 @@ int main(){
 void welcome() {
 
 	cout << "Welcome to my 'CPU' simulator!\n"
-		<< "Author: DJ Carpenter\n"
+		<< "Author: Christina Bilbo\n"
 		<< "Date: 2/28/2016\n"
 		<< "Version: 1.01"
 		<< endl;
