@@ -1,0 +1,4 @@
+﻿  Controller.cpp
+c:\users\dj\onedrive\visual studio\week7_assn7_carpenter_d_ver_2\week7_assn7_carpenter_d_ver_2\controller.cpp(34): warning C4101: 'e': unreferenced local variable
+c:\users\dj\onedrive\visual studio\week7_assn7_carpenter_d_ver_2\week7_assn7_carpenter_d_ver_2\controller.cpp(131): warning C4018: '<': signed/unsigned mismatch
+  Week7_Assn7_Carpenter_D_Ver_2.vcxproj -> C:\Users\DJ\OneDrive\VIsual Studio\Week7_Assn7_Carpenter_D_Ver_2\Debug\Week7_Assn7_Carpenter_D_Ver_2.exe
