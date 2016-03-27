@@ -65,38 +65,38 @@ void Control::mov(std::string destination, std::string source) {
 	if(!error) myRegister.changeRegister(destination,temp2); 
 }
 
-void Control::add(std::string destination, std::string value){
+void Control::ADD(std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);	
 	DWORD64 temp1 = myRegister.getRegister(destination, &error);
-	DWORD64 result = m_ALU.add(temp1, temp2);
+	DWORD64 result = m_ALU.ADD(temp1, temp2);
 	cout << "Result = " << result << endl;
 	cout << "Error = " << error << endl;
 	if(!error) myRegister.changeRegister(destination, result);
 }
 
-void Control::sub(std::string destination, std::string value) {
+void Control::SUB(std::string destination, std::string value) {
 	bool pass = false;
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
 	DWORD64 temp1 = myRegister.getRegister(destination, &error);
-	DWORD64 result = m_ALU.sub(temp1, temp2);
+	DWORD64 result = m_ALU.SUB(temp1, temp2);
 	if(!error) myRegister.changeRegister(destination, result);
 }
 
-void Control::not(std::string destination, std::string value){
+void Control::NOT(std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
 	DWORD64 temp1 = myRegister.getRegister(destination);
-	DWORD64 result = m_ALU.not(temp1, temp2);
+	DWORD64 result = m_ALU.NOT(temp1, temp2);
 	if (!error) myRegister.changeRegister(destination, result);
 }
 
-void Control::or(std::string destination, std::string value){
+void Control::OR(std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
 	DWORD64 temp1 = myRegister.getRegister(destination, &error);
-	DWORD64 result = m_ALU.or(temp1, temp2);
+	DWORD64 result = m_ALU.OR(temp1, temp2);
 	if (!error) myRegister.changeRegister(destination, result);
 }
 
@@ -108,11 +108,11 @@ void Control:: AND (std::string destination, std::string value){
 	if (!error) myRegister.changeRegister(destination, result);
 }
 
-void Control:: xor (std::string destination, std::string value) {
+void Control:: XOR (std::string destination, std::string value) {
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
 	DWORD64 temp1 = myRegister.getRegister(destination, &error);
-	DWORD64 result = m_ALU.xor(temp1, temp2);
+	DWORD64 result = m_ALU.XOR(temp1, temp2);
 	if (!error) myRegister.changeRegister(destination, result);
 }
 
@@ -158,13 +158,13 @@ bool Control::enterCommand() {
 
 	if (cmd == SHOW(ADD)) {
 		//cout << "You entered an 'Addition' command" << endl;
-		add(location, value);
+		ADD(location, value);
 		Found = true;
 	}
 
 	if (cmd == SHOW(SUB)) {
 		//cout << "You entered a 'Subtract' command" << endl;
-		sub(location, value);
+		SUB(location, value);
 		Found = true;
 	}
 
@@ -176,19 +176,19 @@ bool Control::enterCommand() {
 
 	if (cmd == SHOW(OR)) {
 		//cout << "You entered an 'Or' command" << endl;
-		or (location, value);
+		OR (location, value);
 		Found = true;
 	}
 
 	if (cmd == SHOW(NOT)) {
 		//cout << "You entered a 'Not' command" << endl;
-		not (location, value);
+		NOT (location, value);
 		Found = true;
 	}
 
 	if (cmd == SHOW(XOR)) {
 		//cout << "You entered an 'Xor' command" << endl;
-		xor (location, value);
+		XOR (location, value);
 		Found = true;
 	}
 

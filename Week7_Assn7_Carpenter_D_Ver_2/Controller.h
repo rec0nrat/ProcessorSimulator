@@ -33,12 +33,12 @@ namespace processor_sim {
 	public:
 
 		void mov(std::string destination, std::string source);
-		void add(std::string destination, std::string value);
-		void sub(std::string destination, std::string value);
-		void not(std::string destination, std::string value);
-		void or (std::string destination, std::string value);
+		void ADD(std::string destination, std::string value);
+		void SUB(std::string destination, std::string value);
+		void NOT(std::string destination, std::string value);
+		void OR (std::string destination, std::string value);
 		void AND(std::string destination, std::string value);
-		void xor(std::string destination, std::string value);
+		void XOR(std::string destination, std::string value);
 	
 		DWORD64 getValue(std::string destination, std::string value, bool * error);
 
