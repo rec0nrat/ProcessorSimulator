@@ -1,51 +1,54 @@
-#include "Include.h"
+//#include "Include.h"
 #include "Opcode.h"
 #include "Register.h"
 #include "Memory.h"
 #include "ALU.h"
 
-class Control {
+namespace processor_sim {
+	
+	class Control {
 
-private:
+	private:
 
-	std::string array64[8] = { "RAX", "RBX",  "RCX",  "RDX",  "RSI",  "RDI",  "RSI",  "RBP" };
-	std::string array32[8] = { "EAX", "EBX",  "ECX",  "EDX",  "ESI",  "RDI",  "RSI",  "RBP" };
-	std::string array16[8] = { "AX",  "BX",  "CX",  "DX",  "SI",  "DI",  "BP", "SP" };
-	std::string array8[16] = { "AH", "BH", "CH", "DH", "SIH", "DIH", "DPH", "SH", "AL",  "BL",  "CL",  "DL",  "SIL",  "DIL",  "BPL", "SL" };
-	std::string othercmds[1] = { "MAX" };
+		
 
+		const std::string array64[8] = { "RAX", "RBX",  "RCX",  "RDX",  "RSI",  "RDI",  "RSI",  "RBP" };
+		const std::string array32[8] = { "EAX", "EBX",  "ECX",  "EDX",  "ESI",  "RDI",  "RSI",  "RBP" };
+		const std::string array16[8] = { "AX",  "BX",  "CX",  "DX",  "SI",  "DI",  "BP", "SP" };
+		const std::string array8[16] = { "AH", "BH", "CH", "DH", "SIH", "DIH", "DPH", "SH", "AL",  "BL",  "CL",  "DL",  "SIL",  "DIL",  "BPL", "SL" };
+		const std::string othercmds[1] = { "MAX" };
+	
+		friend class Memory;
 
-	friend class Memory;
+		friend class Register;
 
-	friend class Register;
+		friend class ALU;
 
-	friend class ALU;
+		reg::Register myRegister;
 
-	Register myRegister;
+		memory::Memory myMemory;
 
-	Memory myMemory;
+		alu::ALU m_ALU;
+	
+	public:
 
-	ALU myALU;
+		void mov(std::string destination, std::string source);
+		void add(std::string destination, std::string value);
+		void sub(std::string destination, std::string value);
+		void not(std::string destination, std::string value);
+		void or (std::string destination, std::string value);
+		void AND(std::string destination, std::string value);
+		void xor(std::string destination, std::string value);
+	
+		DWORD64 getValue(std::string destination, std::string value, bool * error);
 
-public:
+		void help();
 
-	Control();
+		bool enterCommand();
 
-	void mov(std::string destination, std::string source);
-	void add(std::string destination, std::string value);
-	void sub(std::string destination, std::string value);
-	void not(std::string destination, std::string value);
-	void or(std::string destination, std::string value);
-	void and(std::string destination, std::string value);
-	void xor(std::string destination, std::string value);
+		Control();
+		~Control();
+	};
 
-	DWORD64 getValue(std::string destination, std::string value, bool * error);
-
-	void help();
-
-	bool enterCommand();
-
-	~Control();
-
-};
+}
 

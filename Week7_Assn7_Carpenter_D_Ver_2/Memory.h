@@ -1,31 +1,33 @@
 #include "Include.h"
 
-struct myAddress{
-	short address;
-	int contents = 0;
-	myAddress *nextAddress;
-};
+namespace memory {
 
-class Memory{
+	struct myAddress {
+		short address;
+		int contents = 0;
+		myAddress *nextAddress;
+	};
 
-private:
+	class Memory {
 
-	myAddress * head;
+	private:
 
-	int length;
+		myAddress * head;
 
+		int length;
 
-public:
+	public:
 
-	Memory(int mySize = 100);
+		Memory(int mySize = 100);
 
-	int returnSize();
+		int returnSize();
 
-	void printMemContent(short  addressRef);
+		void printMemContent(short  addressRef);
 
-	void printAllMemory();
+		void printAllMemory();
 
-	void store(short addressRef, int * data);
+		void store(short addressRef, int * data);
 
-	~Memory();
-};
+		~Memory();
+	};
+}

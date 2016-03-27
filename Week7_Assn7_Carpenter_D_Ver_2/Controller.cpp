@@ -1,8 +1,10 @@
 #include "Controller.h"
 
-Control::Control(){
-	
-}
+using namespace processor_sim;
+
+Control::Control() {}
+
+Control::~Control() {}
 
 DWORD64 Control::getValue(std::string destination ,std::string value, bool * error) {
 	//cout << "Error flag before error = " << *error << endl;
@@ -44,7 +46,7 @@ void Control::help() {
 	cout << "\nThe commands supported are:\n"
 		<< "MOV - Moves a value to a register\n"
 		<< "ADD - Adds a value to a register\n"
-		<< "AND - Bitwise and's a register by a value\n"
+		<< "AND - Bitwise AND's a register by a value\n"
 		<< "OR  - Bitwise or's a register by a value\n"
 		<< "XOR - Bitwise exclusive or a register by a value\n"
 		<< "NOT - Bitwise not a register\n"
@@ -67,7 +69,7 @@ void Control::add(std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);	
 	DWORD64 temp1 = myRegister.getRegister(destination, &error);
-	DWORD64 result = myALU.add(temp1, temp2);
+	DWORD64 result = m_ALU.add(temp1, temp2);
 	cout << "Result = " << result << endl;
 	cout << "Error = " << error << endl;
 	if(!error) myRegister.changeRegister(destination, result);
@@ -78,7 +80,7 @@ void Control::sub(std::string destination, std::string value) {
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
 	DWORD64 temp1 = myRegister.getRegister(destination, &error);
-	DWORD64 result = myALU.sub(temp1, temp2);
+	DWORD64 result = m_ALU.sub(temp1, temp2);
 	if(!error) myRegister.changeRegister(destination, result);
 }
 
@@ -86,7 +88,7 @@ void Control::not(std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
 	DWORD64 temp1 = myRegister.getRegister(destination);
-	DWORD64 result = myALU.not(temp1, temp2);
+	DWORD64 result = m_ALU.not(temp1, temp2);
 	if (!error) myRegister.changeRegister(destination, result);
 }
 
@@ -94,15 +96,15 @@ void Control::or(std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
 	DWORD64 temp1 = myRegister.getRegister(destination, &error);
-	DWORD64 result = myALU.or(temp1, temp2);
+	DWORD64 result = m_ALU.or(temp1, temp2);
 	if (!error) myRegister.changeRegister(destination, result);
 }
 
-void Control:: and (std::string destination, std::string value){
+void Control:: AND (std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
 	DWORD64 temp1 = myRegister.getRegister(destination, &error);
-	DWORD64 result = myALU.and(temp1, temp2);
+	DWORD64 result = m_ALU.AND(temp1, temp2);
 	if (!error) myRegister.changeRegister(destination, result);
 }
 
@@ -110,7 +112,7 @@ void Control:: xor (std::string destination, std::string value) {
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
 	DWORD64 temp1 = myRegister.getRegister(destination, &error);
-	DWORD64 result = myALU.xor(temp1, temp2);
+	DWORD64 result = m_ALU.xor(temp1, temp2);
 	if (!error) myRegister.changeRegister(destination, result);
 }
 
@@ -127,6 +129,7 @@ bool Control::enterCommand() {
 	int value1 = 0;
 	cout << "$: ";
 	getline(cin, readData);
+
 	//cout << "You entered " << readData << endl;
 	for (int i = 0; i < readData.length(); i++) {
 		//cout << space1 << " " << comma1 << endl;
@@ -167,7 +170,7 @@ bool Control::enterCommand() {
 
 	if (cmd == SHOW(AND)) {
 		//cout << "You entered an 'And' command" << endl;
-		and(location, value);
+		AND(location, value);
 		Found = true;
 	}
 
@@ -234,12 +237,6 @@ bool Control::enterCommand() {
 		enterCommand();
 	}
 
-	
-
-	//myRegister.DumpRegs();
 	return true;
 }
 
-Control::~Control() {
-	
-}

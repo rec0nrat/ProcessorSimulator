@@ -1,5 +1,5 @@
 #include "Register.h"
-
+using namespace reg;
 Register::Register() {
 
 }

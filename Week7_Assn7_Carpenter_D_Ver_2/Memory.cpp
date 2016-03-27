@@ -1,5 +1,7 @@
 #include "Memory.h"
 
+using namespace memory;
+
 Memory::Memory(int mySize){
 	int sizeAcctual = mySize > 100 ? mySize : 100;
 	head = new myAddress;
