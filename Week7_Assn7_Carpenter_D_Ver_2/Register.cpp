@@ -41,10 +41,15 @@ DWORD64 Register::getRegister(std::string request)
 
 DWORD64 Register::getRegister(std::string request, bool * error)
 {
+	for each(std::string reg in Areg) {
+		if (request == reg) return RAX.to_ullong();
+	}
+
 	for (int i = 0; i < 6; i++) {
+		/*
 		if (request == Areg[i]) {
 			return RAX.to_ullong();
-		}
+		}*/
 		if (request == Breg[i]) {
 			return RBX.to_ullong();
 		}
@@ -144,27 +149,27 @@ void Register::DumpRegs32() {
 
 	cout << "EAX: ";
 	for (int i = 31; i >= 0; i--) {
-		cout << RAX[bits[i]];
+		cout << RAX[i];
 	}
 	cout << "\nEBX: ";
 	for (int i = 31; i >= 0; i--) {
-		cout << RBX[bits[i]];
+		cout << RBX[i];
 	}
 	cout << "\nECX: ";
 	for (int i = 31; i >= 0; i--) {
-		cout << RCX[bits[i]];
+		cout << RCX[i];
 	}
 	cout << "\nEDX: ";
 	for (int i = 31; i >= 0; i--) {
-		cout << RDX[bits[i]];
+		cout << RDX[i];
 	}
 	cout << "\nESI: ";
 	for (int i = 31; i >= 0; i--) {
-		cout << RSI[bits[i]];
+		cout << RSI[i];
 	}
 	cout << "\nEDI: ";
 	for (int i = 31; i >= 0; i--) {
-		cout << RDI[bits[i]];
+		cout << RDI[i];
 	}
 	cout << endl;
 }
@@ -175,27 +180,27 @@ void Register::DumpRegs16() {
 	
 	cout << "AX: ";
 	for (int i = 15; i >= 0; i--) {
-		cout << RAX[bits[i]];
+		cout << RAX[i];
 	}
-	cout << "\nRBX: ";
+	cout << "\nBX: ";
 	for (int i = 15; i >= 0; i--) {
-		cout << RBX[bits[i]];
+		cout << RBX[i];
 	}
-	cout << "\nRCX: ";
+	cout << "\nCX: ";
 	for (int i = 15; i >= 0; i--) {
-		cout << RCX[bits[i]];
+		cout << RCX[i];
 	}
-	cout << "\nRDX: ";
+	cout << "\nDX: ";
 	for (int i = 15; i >= 0; i--) {
-		cout << RDX[bits[i]];
+		cout << RDX[i];
 	}
-	cout << "\nRSI: ";
+	cout << "\nSI: ";
 	for (int i = 15; i >= 0; i--) {
-		cout << RSI[bits[i]];
+		cout << RSI[i];
 	}
-	cout << "\nRDI: ";
+	cout << "\nDI: ";
 	for (int i = 15; i >= 0; i--) {
-		cout << RDI[bits[i]];
+		cout << RDI[i];
 	}
 	cout << endl;
 }
@@ -203,54 +208,55 @@ void Register::DumpRegs16() {
 void Register::DumpRegs8() {
 	cout << "Current 8-bit Register Data" << endl;
 
-	cout << "AX: ";
+	cout << "AL:  ";
 	for (int i = 7; i >= 0; i--) {
-		cout <<RAX[bits[i]];
+		cout <<RAX[i];
 	}
-	cout << "\nBX: ";
+	cout << "\nBL:  ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RBX[bits[i]];
+		cout << RBX[i];
 	}
-	cout << "\nCX: ";
+	cout << "\nCL:  ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RCX[bits[i]];
+		cout << RCX[i];
 	}
-	cout << "\nDX: ";
+	cout << "\nDL:  ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RDX[bits[i]];
+		cout << RDX[i];
 	}
-	cout << "\nSI: ";
+	cout << "\nSIL: ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RSI[bits[i]];
+		cout << RSI[i];
 	}
-	cout << "\nDI: ";
+	cout << "\nDIL: ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RDI[bits[i]];
+		cout << RDI[i];
 	}
 	cout << endl;
 }
 
 void Register::changeRegister(std::string reg, DWORD64 value){
+
 	// A register
 	if (reg == "RAX") RAX = value;
 	if (reg == "EAX") {
 		for (int i = 31; i >= 0; i--) {
-			RAX[bits[i]] = bitset<32>(value)[i];
+			RAX[i] = bitset<32>(value)[i];
 		}
 	}
 	if (reg == "AX") {
 		for (int i = 15; i >= 0; i--) {
-			RAX[bits[i]] = bitset<16>(value)[i];
+			RAX[i] = bitset<16>(value)[i];
 		}
 	}
 	if (reg == "AH") {
 		for (int i = 15; i >= 8; i--) {
-			RAX[bits[i]] = bitset<8>(value)[i-8];
+			RAX[i] = bitset<8>(value)[i-8];
 		}
 	}
 	if (reg == "AL") {
 		for (int i = 7; i >= 0; i--) {
-			RAX[bits[i]] = bitset<8>(value)[i];
+			RAX[i] = bitset<8>(value)[i];
 		}
 	}
 
@@ -258,22 +264,22 @@ void Register::changeRegister(std::string reg, DWORD64 value){
 	if (reg == "RBX") RBX = value;
 	if (reg == "EBX") {
 		for (int i = 31; i >= 0; i--) {
-			RBX[bits[i]] = bitset<32>(value)[i];
+			RBX[i] = bitset<32>(value)[i];
 		}
 	}
 	if (reg == "BX") {
 		for (int i = 15; i >= 0; i--) {
-			RBX[bits[i]] = bitset<16>(value)[i];
+			RBX[i] = bitset<16>(value)[i];
 		}
 	}
 	if (reg == "BH") {
 		for (int i = 15; i >= 8; i--) {
-			RBX[bits[i]] = bitset<8>(value)[i-8];
+			RBX[i] = bitset<8>(value)[i-8];
 		}
 	}
 	if (reg == "BL") {
 		for (int i = 7; i >= 0; i--) {
-			RBX[bits[i]] = bitset<8>(value)[i];
+			RBX[i] = bitset<8>(value)[i];
 		}
 	}
 
@@ -281,22 +287,22 @@ void Register::changeRegister(std::string reg, DWORD64 value){
 	if (reg == "RCX") RCX = value;
 	if (reg == "ECX") {
 		for (int i = 31; i >= 0; i--) {
-			RCX[bits[i]] = bitset<32>(value)[i];
+			RCX[i] = bitset<32>(value)[i];
 		}
 	}
 	if (reg == "CX") {
 		for (int i = 15; i >= 0; i--) {
-			RCX[bits[i]] = bitset<16>(value)[i];
+			RCX[i] = bitset<16>(value)[i];
 		}
 	}
 	if (reg == "CH") {
 		for (int i = 15; i >= 8; i--) {
-			RCX[bits[i]] = bitset<8>(value)[i-8];
+			RCX[i] = bitset<8>(value)[i-8];
 		}
 	}
 	if (reg == "CL") {
 		for (int i = 7; i >= 0; i--) {
-			RCX[bits[i]] = bitset<8>(value)[i];
+			RCX[i] = bitset<8>(value)[i];
 		}
 	}
 
@@ -304,22 +310,22 @@ void Register::changeRegister(std::string reg, DWORD64 value){
 	if (reg == "RDX") RDX = value;
 	if (reg == "EDX") {
 		for (int i = 31; i >= 0; i--) {
-			RDX[bits[i]] = bitset<32>(value)[i];
+			RDX[i] = bitset<32>(value)[i];
 		}
 	}
 	if (reg == "DX") {
 		for (int i = 15; i >= 0; i--) {
-			RDX[bits[i]] = bitset<16>(value)[i];
+			RDX[i] = bitset<16>(value)[i];
 		}
 	}
 	if (reg == "DH") {
 		for (int i = 15; i >= 8; i--) {
-			RDX[bits[i]] = bitset<8>(value)[i - 8];
+			RDX[i] = bitset<8>(value)[i - 8];
 		}
 	}
 	if (reg == "DL") {
 		for (int i = 7; i >= 0; i--) {
-			RDX[bits[i]] = bitset<8>(value)[i];
+			RDX[i] = bitset<8>(value)[i];
 		}
 	}
 
@@ -327,22 +333,22 @@ void Register::changeRegister(std::string reg, DWORD64 value){
 	if (reg == "RSI") RSI = value;
 	if (reg == "ESI") {
 		for (int i = 31; i >= 0; i--) {
-			RSI[bits[i]] = bitset<32>(value)[i];
+			RSI[i] = bitset<32>(value)[i];
 		}
 	}
 	if (reg == "SI") {
 		for (int i = 15; i >= 0; i--) {
-			RSI[bits[i]] = bitset<16>(value)[i];
+			RSI[i] = bitset<16>(value)[i];
 		}
 	}
 	if (reg == "SIH") {
 		for (int i = 15; i >= 8; i--) {
-			RSI[bits[i]] = bitset<8>(value)[i - 8];
+			RSI[i] = bitset<8>(value)[i - 8];
 		}
 	}
 	if (reg == "SIL") {
 		for (int i = 7; i >= 0; i--) {
-			RSI[bits[i]] = bitset<8>(value)[i];
+			RSI[i] = bitset<8>(value)[i];
 		}
 	}
 
@@ -350,22 +356,22 @@ void Register::changeRegister(std::string reg, DWORD64 value){
 	if (reg == "RDI") RDI = value;
 	if (reg == "EDI") {
 		for (int i = 31; i >= 0; i--) {
-			RDI[bits[i]] = bitset<32>(value)[i];
+			RDI[i] = bitset<32>(value)[i];
 		}
 	}
 	if (reg == "DI") {
 		for (int i = 15; i >= 0; i--) {
-			RDI[bits[i]] = bitset<16>(value)[i];
+			RDI[i] = bitset<16>(value)[i];
 		}
 	}
 	if (reg == "DIH") {
 		for (int i = 15; i >= 8; i--) {
-			RDI[bits[i]] = bitset<8>(value)[i - 8];
+			RDI[i] = bitset<8>(value)[i - 8];
 		}
 	}
 	if (reg == "DL") {
 		for (int i = 7; i >= 0; i--) {
-			RDI[bits[i]] = bitset<8>(value)[i];
+			RDI[i] = bitset<8>(value)[i];
 		}
 	}
 }

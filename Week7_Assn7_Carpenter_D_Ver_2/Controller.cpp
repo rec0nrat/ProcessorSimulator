@@ -17,8 +17,10 @@ DWORD64 Control::getValue(std::string destination ,std::string value, bool * err
 			return m_Register.getRegister(value);
 	}
 
-	for (int i = 0; i < 16; i++) if (value == array8[i]) {
-		return m_Register.getRegister(value);
+	for (int i = 0; i < 16; i++){
+		if (value == array8[i]) {
+			return m_Register.getRegister(value);
+		}
 	}
 
 	if (value == "MAX") {
@@ -76,8 +78,8 @@ void Control::ADD(std::string destination, std::string value){
 	DWORD64 temp2 = getValue(destination, value, &error);	
 	DWORD64 temp1 = m_Register.getRegister(destination, &error);
 	DWORD64 result = m_ALU.ADD(temp1, temp2);
-	cout << "Result = " << result << endl;
-	cout << "Error = " << error << endl;
+	//cout << "Result = " << result << endl;
+	//cout << "Error = " << error << endl;
 	if(!error) m_Register.changeRegister(destination, result);
 }
 
@@ -135,6 +137,7 @@ bool Control::enterCommand() {
 	std::string value = "";
 	int value1 = 0;
 	cout << "$: ";
+
 	getline(cin, readData);
 
 	//cout << "You entered " << readData << endl;
@@ -240,6 +243,7 @@ bool Control::enterCommand() {
 
 	if (cmd == "MEMDUMP") {
 		cout << "Initiate memory dump!" << endl;
+		m_Memory.printAllMemory();
 		enterCommand();
 	}
 
