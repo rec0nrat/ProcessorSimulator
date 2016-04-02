@@ -6,10 +6,14 @@ Register::Register() {
 
 DWORD64 Register::getRegister(std::string request)
 {
+	for each(std::string reg in Areg) {
+		if (request == reg) return RAX.to_ullong();
+	}
 	for (int i = 0; i < 6; i++) {
+		/*
 		if (request == Areg[i]) {
 			return RAX.to_ullong();
-		}
+		}*/
 		if (request == Breg[i]) {
 			return RBX.to_ullong();
 		}

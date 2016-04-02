@@ -8,12 +8,18 @@ Control::~Control() {}
 
 DWORD64 Control::getValue(std::string destination ,std::string value, bool * error) {
 	//cout << "Error flag before error = " << *error << endl;
+
 	DWORD returnVal = 0;
 	
 	for (int i = 0; i < 8; i++) {
-		if (value == array64[i] || value == array32[i] || value == array16[i]) return myRegister.getRegister(value);
+
+		if (value == array64[i] || value == array32[i] || value == array16[i]) 
+			return m_Register.getRegister(value);
 	}
-	for (int i = 0; i < 16; i++) if (value == array8[i]) return myRegister.getRegister(value);
+
+	for (int i = 0; i < 16; i++) if (value == array8[i]) {
+		return m_Register.getRegister(value);
+	}
 
 	if (value == "MAX") {
 		if (destination[0] == 'R') {
@@ -62,61 +68,62 @@ void Control::MOV(std::string destination, std::string source) {
 	DWORD64 temp2;
 	temp2 = getValue(destination, source, &error);
 	//cout << "Error flag = " << error << endl;
-	if(!error) myRegister.changeRegister(destination,temp2); 
+	if(!error) m_Register.changeRegister(destination,temp2); 
 }
 
 void Control::ADD(std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);	
-	DWORD64 temp1 = myRegister.getRegister(destination, &error);
+	DWORD64 temp1 = m_Register.getRegister(destination, &error);
 	DWORD64 result = m_ALU.ADD(temp1, temp2);
 	cout << "Result = " << result << endl;
 	cout << "Error = " << error << endl;
-	if(!error) myRegister.changeRegister(destination, result);
+	if(!error) m_Register.changeRegister(destination, result);
 }
 
 void Control::SUB(std::string destination, std::string value) {
 	bool pass = false;
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
-	DWORD64 temp1 = myRegister.getRegister(destination, &error);
+	DWORD64 temp1 = m_Register.getRegister(destination, &error);
 	DWORD64 result = m_ALU.SUB(temp1, temp2);
-	if(!error) myRegister.changeRegister(destination, result);
+	if(!error) m_Register.changeRegister(destination, result);
 }
 
 void Control::NOT(std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
-	DWORD64 temp1 = myRegister.getRegister(destination);
+	DWORD64 temp1 = m_Register.getRegister(destination);
 	DWORD64 result = m_ALU.NOT(temp1, temp2);
-	if (!error) myRegister.changeRegister(destination, result);
+	if (!error) m_Register.changeRegister(destination, result);
 }
 
 void Control::OR(std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
-	DWORD64 temp1 = myRegister.getRegister(destination, &error);
+	DWORD64 temp1 = m_Register.getRegister(destination, &error);
 	DWORD64 result = m_ALU.OR(temp1, temp2);
-	if (!error) myRegister.changeRegister(destination, result);
+	if (!error) m_Register.changeRegister(destination, result);
 }
 
 void Control:: AND (std::string destination, std::string value){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
-	DWORD64 temp1 = myRegister.getRegister(destination, &error);
+	DWORD64 temp1 = m_Register.getRegister(destination, &error);
 	DWORD64 result = m_ALU.AND(temp1, temp2);
-	if (!error) myRegister.changeRegister(destination, result);
+	if (!error) m_Register.changeRegister(destination, result);
 }
 
 void Control:: XOR (std::string destination, std::string value) {
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, value, &error);
-	DWORD64 temp1 = myRegister.getRegister(destination, &error);
+	DWORD64 temp1 = m_Register.getRegister(destination, &error);
 	DWORD64 result = m_ALU.XOR(temp1, temp2);
-	if (!error) myRegister.changeRegister(destination, result);
+	if (!error) m_Register.changeRegister(destination, result);
 }
 
 bool Control::enterCommand() {
+
 	char space = ' ';
 	char comma = ',';
 	bool space1 = false;
@@ -203,32 +210,37 @@ bool Control::enterCommand() {
 	}
 
 	if (cmd == "REG64") {
-		myRegister.DumpRegs64();
+		m_Register.DumpRegs64();
 		Found = true;
 	}
 
 	if (cmd == "REG32") {
-		myRegister.DumpRegs32();
+		m_Register.DumpRegs32();
 		Found = true;
 	}
 
 	if (cmd == "REG16") {
-		myRegister.DumpRegs16();
+		m_Register.DumpRegs16();
 		Found = true;
 	}
 
 	if (cmd == "REG8") {
-		myRegister.DumpRegs8();
+		m_Register.DumpRegs8();
 		Found = true;
 	}
 
 	if (cmd == "REGD") {
-		myRegister.DumpRegsDec();
+		m_Register.DumpRegsDec();
 		Found = true;
 	}
 
 	if (cmd == "EXIT") {
 		return false;
+	}
+
+	if (cmd == "MEMDUMP") {
+		cout << "Initiate memory dump!" << endl;
+		enterCommand();
 	}
 
 	if (!Found) {

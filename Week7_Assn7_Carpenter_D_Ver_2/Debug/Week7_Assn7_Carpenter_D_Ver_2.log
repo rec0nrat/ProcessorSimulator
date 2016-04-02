@@ -1,9 +1,2 @@
-﻿  Controller.cpp
-c:\users\rec0nrat\documents\processorsimulator\week7_assn7_carpenter_d_ver_2\controller.cpp(36): warning C4101: 'e': unreferenced local variable
-c:\users\rec0nrat\documents\processorsimulator\week7_assn7_carpenter_d_ver_2\controller.cpp(134): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  Compiling...
-  main.cpp
-  Register.cpp
-  Generating Code...
+﻿  Register.cpp
   Week7_Assn7_Carpenter_D_Ver_2.vcxproj -> C:\Users\Rec0nRat\Documents\ProcessorSimulator\Debug\Week7_Assn7_Carpenter_D_Ver_2.exe

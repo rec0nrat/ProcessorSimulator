@@ -10,8 +10,6 @@ namespace processor_sim {
 
 	private:
 
-		
-
 		const std::string array64[8] = { "RAX", "RBX",  "RCX",  "RDX",  "RSI",  "RDI",  "RSI",  "RBP" };
 		const std::string array32[8] = { "EAX", "EBX",  "ECX",  "EDX",  "ESI",  "RDI",  "RSI",  "RBP" };
 		const std::string array16[8] = { "AX",  "BX",  "CX",  "DX",  "SI",  "DI",  "BP", "SP" };
@@ -24,9 +22,9 @@ namespace processor_sim {
 
 		friend class ALU;
 
-		reg::Register myRegister;
+		reg::Register m_Register;
 
-		memory::Memory myMemory;
+		memory::Memory m_Memory;
 
 		alu::ALU m_ALU;
 	
