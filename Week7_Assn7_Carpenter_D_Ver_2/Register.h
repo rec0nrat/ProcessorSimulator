@@ -1,4 +1,5 @@
 #include "Include.h"
+
 /*
 Register layout
 
@@ -8,6 +9,8 @@ Register layout
 |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|_____AX______|
 |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|__AH__|__AL__|
 */
+
+
 namespace reg {
 
 	class Register {

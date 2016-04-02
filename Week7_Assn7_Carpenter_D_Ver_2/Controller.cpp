@@ -57,7 +57,7 @@ void Control::help() {
 		<< endl;
 }
 
-void Control::mov(std::string destination, std::string source) {
+void Control::MOV(std::string destination, std::string source) {
 	bool error = false;
 	DWORD64 temp2;
 	temp2 = getValue(destination, source, &error);
@@ -152,7 +152,7 @@ bool Control::enterCommand() {
 
 	if (cmd == SHOW(MOV)) {
 		//cout << "You entered a 'Move' command" << endl;
-		mov(location, value);
+		MOV(location, value);
 		Found = true;
 	}
 

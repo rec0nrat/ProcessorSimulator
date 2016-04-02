@@ -32,7 +32,7 @@ namespace processor_sim {
 	
 	public:
 
-		void mov(std::string destination, std::string source);
+		void MOV(std::string destination, std::string source);
 		void ADD(std::string destination, std::string value);
 		void SUB(std::string destination, std::string value);
 		void NOT(std::string destination, std::string value);

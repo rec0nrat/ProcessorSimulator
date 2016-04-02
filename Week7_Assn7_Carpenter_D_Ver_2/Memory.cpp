@@ -3,7 +3,9 @@
 using namespace memory;
 
 Memory::Memory(int mySize){
+
 	int sizeAcctual = mySize > 100 ? mySize : 100;
+
 	head = new myAddress;
 	head->nextAddress = NULL; 
 	head->address = 0;
@@ -16,9 +18,11 @@ Memory::Memory(int mySize){
 			p = q;
 			q = p->nextAddress;
 		}
+
 		p->nextAddress = new myAddress;
 		p->nextAddress->nextAddress = NULL;
 		p->address = i;
+
 		length++;
 	}
 	
@@ -42,8 +46,6 @@ void Memory::printMemContent(short addressRef){
 	}
 
 	if (!found) cout << "Address not found" << endl;
-
-
 }
 
 void Memory::printAllMemory(){
