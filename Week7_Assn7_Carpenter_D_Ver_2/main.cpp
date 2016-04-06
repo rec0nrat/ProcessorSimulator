@@ -1,14 +1,14 @@
 #include "Controller.h"	//Controller.h contains all sub components
 
-using namespace processor_sim;	//namespace that defines all other components
+using namespace processor_sim;	// I got curous aboiut using namespaces so I'm pretty sure that this isn't necessary. I was just messing around with namespaces
 
-void welcome();
+void DisplayHeader();
 
 int main(){
 
 	Control Processor; //create an instance of a processor
 
-	welcome();
+	DisplayHeader();
 
 	cout << endl << "** Enter 'help' for a list of commands **\n" << endl;
 
@@ -19,7 +19,7 @@ int main(){
 	return 0;
 }
 
-void welcome() {
+void DisplayHeader() {
 
 	cout << "Processor Simulation \n"
 		<< "(Using MASM Instruction Set) \n"
