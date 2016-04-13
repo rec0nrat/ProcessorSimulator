@@ -158,40 +158,40 @@ bool Control::enterCommand() {
 		}
 	}	
 
-	if (cmd == SHOW(MOV)) {
+	if (cmd == "MOV") {
 		//cout << "You entered a 'Move' command" << endl;
 		MOV(location, source);
 		Found = true;
 	}
 
-	if (cmd == SHOW(ADD)) {
+	if (cmd == "ADD") {
 		//cout << "You entered an 'Addition' command" << endl;
 		ADD(location, source);
 		Found = true;
 	}
 
-	if (cmd == SHOW(SUB)) {
+	if (cmd == "SUB") {
 		
 		SUB(location, source);
 		Found = true;
 	}
 
-	if (cmd == SHOW(AND)) {
+	if (cmd == "AND") {
 		AND(location, source);
 		Found = true;
 	}
 
-	if (cmd == SHOW(OR)) {
+	if (cmd == "OR") {
 		OR (location, source);
 		Found = true;
 	}
 
-	if (cmd == SHOW(NOT)) {
+	if (cmd == "NOT") {
 		NOT (location, source);
 		Found = true;
 	}
 
-	if (cmd == SHOW(XOR)) {
+	if (cmd == "XOR") {
 		XOR (location, source);
 		Found = true;
 	}
@@ -242,7 +242,7 @@ bool Control::enterCommand() {
 	}
 
 	if (!Found) {
-		cout << "Not a valid command!!!!!\nType 'help' for assistance or 'exit' to leave the program..." << endl;
+		cout << "Invalid Command!!! Type 'help' for list of commands." << endl;
 		enterCommand();
 	}
 

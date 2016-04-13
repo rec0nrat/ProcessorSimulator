@@ -44,9 +44,6 @@
     <ClInclude Include="Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Opcode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Register.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -1,6 +1,6 @@
 #include "Controller.h"	//Controller.h contains all sub components
 
-using namespace processor_sim;	// I got curous aboiut using namespaces so I'm pretty sure that this isn't necessary. I was just messing around with namespaces
+using namespace processor_sim;	// I got curous about using namespaces so I'm pretty sure that this isn't necessary. 
 
 void DisplayHeader();
 

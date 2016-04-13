@@ -16,8 +16,6 @@ namespace reg {
 
 	private:
 
-		//const int bits[32] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 };
-
 		std::string Areg[5] = { "RAX", "EAX", "AX", "AH", "AL" };
 		std::string Breg[5] = { "RBX", "EBX", "BX", "BH", "BL" };
 		std::string Creg[5] = { "RCX", "ECX", "CX", "CH", "CL" };
