@@ -241,6 +241,12 @@ bool Control::enterCommand() {
 		enterCommand();
 	}
 
+	if (cmd == "LEA") {		//load effective address command
+		//LEA dest,source
+		// dest ;=address of source
+		//SEE FIRST LINK EXAMPLE, CAN USE EITHER MOV OR LEA SO NO NEED FOR STORE FUNCTION???
+	}
+
 	if (!Found) {
 		cout << "Invalid Command!!! Type 'help' for list of commands." << endl;
 		enterCommand();
