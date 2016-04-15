@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Week7_Assn7_Carpenter_D_Ver_2", "Week7_Assn7_Carpenter_D_Ver_2\Week7_Assn7_Carpenter_D_Ver_2.vcxproj", "{0E309649-07AF-4684-93E9-CD7F4FE71010}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProcessorSim_Asssembly", "ProcessorSim_Assembly\ProcessorSim_Assembly.vcxproj", "{64B416E0-24D4-45B1-8961-60E4627C1411}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0E309649-07AF-4684-93E9-CD7F4FE71010}.Debug|Win32.ActiveCfg = Debug|Win32
-		{0E309649-07AF-4684-93E9-CD7F4FE71010}.Debug|Win32.Build.0 = Debug|Win32
-		{0E309649-07AF-4684-93E9-CD7F4FE71010}.Release|Win32.ActiveCfg = Release|Win32
-		{0E309649-07AF-4684-93E9-CD7F4FE71010}.Release|Win32.Build.0 = Release|Win32
+		{64B416E0-24D4-45B1-8961-60E4627C1411}.Debug|Win32.ActiveCfg = Debug|Win32
+		{64B416E0-24D4-45B1-8961-60E4627C1411}.Debug|Win32.Build.0 = Debug|Win32
+		{64B416E0-24D4-45B1-8961-60E4627C1411}.Release|Win32.ActiveCfg = Release|Win32
+		{64B416E0-24D4-45B1-8961-60E4627C1411}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
