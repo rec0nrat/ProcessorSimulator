@@ -59,6 +59,7 @@ void Control::help() {
 		<< "NOT - Bitwise not a register\n"
 		<< "SUB - Subtract a value from a register\n"
 		<< "Type 'MEMDUMP' to display memory\n"
+		<< "LEA - Loads effective address to a register\n"
 		<< "Type 'clear' to clear the screen.\n"
 		<< "Type 'reg64' 'reg32' 'reg16' 'reg8' to view registers\n"
 		<< "Type 'EXIT' to leave the program\n"
@@ -67,8 +68,7 @@ void Control::help() {
 
 void Control::MOV(std::string destination, std::string source) {
 	bool error = false;
-	DWORD64 temp2;
-	temp2 = getValue(destination, source, &error);
+	DWORD64 temp2 = getValue(destination, source, &error);
 	//cout << "Error flag = " << error << endl;
 	if(!error) m_Register.changeRegister(destination,temp2); 
 }
@@ -122,6 +122,12 @@ void Control:: XOR (std::string destination, std::string source) {
 	DWORD64 temp1 = m_Register.getRegister(destination, &error);
 	DWORD64 result = m_ALU.XOR(temp1, temp2);
 	if (!error) m_Register.changeRegister(destination, result);
+}
+
+void Control:: LEA (std::string destination, std::string source) {
+	bool error = false;
+	DWORD64 temp2 = m_Register.getRegister(destination, &error);
+	if (!error) m_Register.changeRegister(destination, temp2);
 }
 
 bool Control::enterCommand() {
@@ -242,9 +248,8 @@ bool Control::enterCommand() {
 	}
 
 	if (cmd == "LEA") {		//load effective address command
-		//LEA dest,source
-		// dest ;=address of source
-		//SEE FIRST LINK EXAMPLE, CAN USE EITHER MOV OR LEA SO NO NEED FOR STORE FUNCTION???
+		LEA(location, source);
+		Found = true;
 	}
 
 	if (!Found) {

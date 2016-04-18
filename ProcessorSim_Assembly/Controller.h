@@ -37,6 +37,7 @@ namespace processor_sim {
 		void OR (std::string destination, std::string value);
 		void AND(std::string destination, std::string value);
 		void XOR(std::string destination, std::string value);
+		void LEA(std::string destination, std::string source);
 	
 		DWORD64 getValue(std::string destination, std::string value, bool * error);
 
