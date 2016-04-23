@@ -10,7 +10,7 @@ namespace memory {
 
 	class Memory {
 
-	private:
+	/*private:
 
 		myAddress * head;
 
@@ -29,5 +29,6 @@ namespace memory {
 		void store(short addressRef, int * data);
 
 		~Memory();
-	};
+	};*/
+
 }

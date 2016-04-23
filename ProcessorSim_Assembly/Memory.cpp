@@ -4,6 +4,8 @@ using namespace memory;
 
 Memory::Memory(int mySize){
 
+
+
 	/*int sizeAcctual = mySize > 50 ? mySize : 50;
 
 	head = new myAddress;
