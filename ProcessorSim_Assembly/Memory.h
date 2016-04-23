@@ -18,7 +18,7 @@ namespace memory {
 
 	public:
 
-		Memory(int mySize = 100);
+		Memory(int mySize = 50);
 
 		int returnSize();
 
