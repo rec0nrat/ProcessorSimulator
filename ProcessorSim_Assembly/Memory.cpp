@@ -4,7 +4,7 @@ using namespace memory;
 
 Memory::Memory(int mySize){
 
-	int sizeAcctual = mySize > 100 ? mySize : 100;
+	int sizeAcctual = mySize > 50 ? mySize : 50;
 
 	head = new myAddress;
 	head->nextAddress = NULL; 

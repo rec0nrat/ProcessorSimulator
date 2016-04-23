@@ -1,5 +1,6 @@
 #include "Controller.h"
 
+
 using namespace processor_sim;
 
 Control::Control() {}
@@ -132,37 +133,37 @@ void Control:: LEA (std::string destination, std::string source) {
 
 bool Control::enterCommand() {
 
-	char space = ' ';
-	char comma = ',';
-	bool space1 = false;
-	bool comma1 = false;
 	bool Found = false;
 	std::string readData = "";
+	std::vector<std::string> parsedCMDs;
 	std::string cmd = "";
 	std::string location = "";
 	std::string source = "";
 	int value1 = 0;
-	cout << "$: ";
 
-	getline(cin, readData);
+	cout << "inline.processor@> ";
 
-	for (int i = 0; i < readData.length(); i++) {
+	std::getline(cin, readData);
+	
+	istringstream strstream(readData);
 
-		if (bitset<8>(readData[i]) == bitset<8>(space)) space1 = true;
-		if (bitset<8>(readData[i]) == bitset<8>(comma)) comma1 = true;
-		if (bitset<8>(readData[i]) != bitset<8>(space) && bitset<8>(readData[i]) != bitset<8>(comma)) {
-			if (space1 == false && comma1 == false) {
-				cmd += toupper(readData[i]);
-				
-			}
-			if (space1 == true && comma1 == false) {
-				location += toupper(readData[i]);
-			}
-			if (space1 == true && comma1 == true) {
-				source += toupper(readData[i]);
+	char chars[] = " ,";
+
+	for (std::string next; std::getline(strstream, next, ' '); parsedCMDs.push_back(next));
+
+	for (int i = 0; i < strlen(chars); i++) {
+		for (int k = 0; k < parsedCMDs.size(); k++) {
+			parsedCMDs[k].erase(std::remove(parsedCMDs[k].begin(), parsedCMDs[k].end(), chars[i]), parsedCMDs[k].end());
+			for (int index = 0; index < parsedCMDs[k].size(); index++)
+			{
+				parsedCMDs[k][index] = toupper(parsedCMDs[k][index]);
 			}
 		}
-	}	
+	}
+
+	cmd = parsedCMDs[0];
+	if (parsedCMDs.size() > 1) location = parsedCMDs[1];
+	if (parsedCMDs.size() > 2) source = parsedCMDs[2];
 
 	if (cmd == "MOV") {
 		//cout << "You entered a 'Move' command" << endl;
@@ -256,7 +257,7 @@ bool Control::enterCommand() {
 		cout << "Invalid Command!!! Type 'help' for list of commands." << endl;
 		enterCommand();
 	}
-
+	
 	return true;
 }
 

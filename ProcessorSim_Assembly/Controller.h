@@ -3,6 +3,7 @@
 #include "Register.h"
 #include "Memory.h"
 #include "ALU.h"
+#include <sstream>
 
 namespace processor_sim {
 	
