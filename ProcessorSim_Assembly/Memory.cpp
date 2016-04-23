@@ -1,38 +1,56 @@
 #include "Memory.h"
 
 using namespace memory;
+Memory::Memory() {}
+Memory::Memory(int capacity) {
+	capacity = 50;
+	memory = new bitset<32>[capacity];
+	this->capacity = capacity;
+	sp = capacity;
+	hp = capacity / 2;
+}
 
-Memory::Memory(int mySize){
+void Memory::push(bitset<32> data) {
 
-
-
-	/*int sizeAcctual = mySize > 50 ? mySize : 50;
-
-	head = new myAddress;
-	head->nextAddress = NULL; 
-	head->address = 0;
-	
-	for (int i = 0; i < sizeAcctual; i++){
-		myAddress * p = head;
-		myAddress * q = head;
-
-		while (q){
-			p = q;
-			q = p->nextAddress;
-		}
-
-		p->nextAddress = new myAddress;
-		p->nextAddress->nextAddress = NULL;
-		p->address = i;
-
-		length++;
+	sp--;
+	if (sp == hp)
+		throw string("Overflow");
+	else {
+		memory[sp] = data;
 	}
+}
+
+bitset<32> Memory::pop() {
+	if (sp == capacity)
+		throw string("Stack is empty.");
+	else {
+		bitset<32> temp = memory[sp];
+		memory[sp] = 0;
+		sp++;
+		return temp;
+	}
+}
+
+void Memory::printMemContent(short addressRef) {
 	
 }
 
-int Memory::returnSize(){
-	return length;
+void Memory::printAllMemory() {
+
 }
+
+void Memory::store(short addressRef, int * data) {
+
+}
+
+Memory::~Memory() {
+	delete[] memory;
+}
+
+	
+
+/*
+
 
 void Memory::printMemContent(short addressRef){
 	myAddress * p = head;

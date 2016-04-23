@@ -253,7 +253,8 @@ bool Control::enterCommand() {
 	}
 
 	if (cmd == "PUSH") {	//push a value on to stack
-		m_Memory.push();
+		DWORD64 data = m_Register.getRegister(location);
+		m_Memory.push(data);
 		enterCommand();
 	}
 
