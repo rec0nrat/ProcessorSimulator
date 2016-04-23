@@ -1,48 +1,10 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (ProcessorSim_Asssembly.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  main.cpp
-i:\processorsimulator\processorsim_assembly\memory.h(37): error C2535: 'memory::Memory::Memory(int)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(21): note: see declaration of 'memory::Memory::Memory'
-i:\processorsimulator\processorsim_assembly\memory.h(41): error C2535: 'void memory::Memory::printMemContent(short)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(24): note: see declaration of 'memory::Memory::printMemContent'
-i:\processorsimulator\processorsim_assembly\memory.h(43): error C2535: 'void memory::Memory::printAllMemory(void)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(25): note: see declaration of 'memory::Memory::printAllMemory'
-i:\processorsimulator\processorsim_assembly\memory.h(45): error C2535: 'void memory::Memory::store(short,int *)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(26): note: see declaration of 'memory::Memory::store'
-i:\processorsimulator\processorsim_assembly\memory.h(47): error C2535: 'memory::Memory::~Memory(void)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(27): note: see declaration of 'memory::Memory::~Memory'
+  Register.cpp
   Memory.cpp
-i:\processorsimulator\processorsim_assembly\memory.h(37): error C2535: 'memory::Memory::Memory(int)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(21): note: see declaration of 'memory::Memory::Memory'
-i:\processorsimulator\processorsim_assembly\memory.h(41): error C2535: 'void memory::Memory::printMemContent(short)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(24): note: see declaration of 'memory::Memory::printMemContent'
-i:\processorsimulator\processorsim_assembly\memory.h(43): error C2535: 'void memory::Memory::printAllMemory(void)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(25): note: see declaration of 'memory::Memory::printAllMemory'
-i:\processorsimulator\processorsim_assembly\memory.h(45): error C2535: 'void memory::Memory::store(short,int *)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(26): note: see declaration of 'memory::Memory::store'
-i:\processorsimulator\processorsim_assembly\memory.h(47): error C2535: 'memory::Memory::~Memory(void)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(27): note: see declaration of 'memory::Memory::~Memory'
-i:\processorsimulator\processorsim_assembly\memory.cpp(53): error C2084: function 'void memory::Memory::printMemContent(short)' already has a body
-  i:\processorsimulator\processorsim_assembly\memory.cpp(34): note: see previous definition of 'printMemContent'
-i:\processorsimulator\processorsim_assembly\memory.cpp(69): error C2084: function 'void memory::Memory::printAllMemory(void)' already has a body
-  i:\processorsimulator\processorsim_assembly\memory.cpp(38): note: see previous definition of 'printAllMemory'
-i:\processorsimulator\processorsim_assembly\memory.cpp(80): error C2084: function 'void memory::Memory::store(short,int *)' already has a body
-  i:\processorsimulator\processorsim_assembly\memory.cpp(42): note: see previous definition of 'store'
-i:\processorsimulator\processorsim_assembly\memory.cpp(95): error C2084: function 'memory::Memory::~Memory(void)' already has a body
-  i:\processorsimulator\processorsim_assembly\memory.cpp(46): note: see previous definition of '{dtor}'
+  main.cpp
   Controller.cpp
-i:\processorsimulator\processorsim_assembly\memory.h(37): error C2535: 'memory::Memory::Memory(int)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(21): note: see declaration of 'memory::Memory::Memory'
-i:\processorsimulator\processorsim_assembly\memory.h(41): error C2535: 'void memory::Memory::printMemContent(short)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(24): note: see declaration of 'memory::Memory::printMemContent'
-i:\processorsimulator\processorsim_assembly\memory.h(43): error C2535: 'void memory::Memory::printAllMemory(void)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(25): note: see declaration of 'memory::Memory::printAllMemory'
-i:\processorsimulator\processorsim_assembly\memory.h(45): error C2535: 'void memory::Memory::store(short,int *)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(26): note: see declaration of 'memory::Memory::store'
-i:\processorsimulator\processorsim_assembly\memory.h(47): error C2535: 'memory::Memory::~Memory(void)': member function already defined or declared
-  i:\processorsimulator\processorsim_assembly\memory.h(27): note: see declaration of 'memory::Memory::~Memory'
-i:\processorsimulator\processorsim_assembly\controller.cpp(5): error C2668: 'memory::Memory::Memory': ambiguous call to overloaded function
-  i:\processorsimulator\processorsim_assembly\memory.h(21): note: could be 'memory::Memory::Memory(int)'
-  i:\processorsimulator\processorsim_assembly\memory.h(20): note: or       'memory::Memory::Memory(void)'
-  i:\processorsimulator\processorsim_assembly\controller.cpp(5): note: while trying to match the argument list '()'
+i:\processorsimulator\processorsim_assembly\controller.cpp(43): warning C4101: 'e': unreferenced local variable
 i:\processorsimulator\processorsim_assembly\controller.cpp(149): warning C4018: '<': signed/unsigned mismatch
+  ALU.cpp
   Generating Code...
+  ProcessorSim_Assembly.vcxproj -> I:\ProcessorSimulator\Debug\ProcessorSim_Asssembly.exe

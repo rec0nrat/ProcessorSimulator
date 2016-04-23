@@ -103,7 +103,3 @@ Memory::~Memory(){
 		if (q) delete p;
 	}
 	*/
-
-
-
-}

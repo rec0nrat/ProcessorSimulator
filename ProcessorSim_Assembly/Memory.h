@@ -25,6 +25,8 @@ namespace memory {
 		void printAllMemory();
 		void store(short addressRef, int * data);
 		~Memory();
+	};
+}
 /*
 	private:
 
@@ -47,4 +49,3 @@ namespace memory {
 		~Memory();
 	};*/
 
-}
