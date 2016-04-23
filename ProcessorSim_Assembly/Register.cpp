@@ -3,7 +3,30 @@
 using namespace reg;
 
 Register::Register() {
-
+	for (int i = 63; i >= 32; i--) {
+		RAX[i] = bitset<32>(0)[i-32];
+	}
+	for (int i = 63; i >= 32; i--) {
+		RBX[i] = bitset<32>(1)[i-32];
+	}
+	for (int i = 63; i >= 32; i--) {
+		RCX[i] = bitset<32>(2)[i-32];
+	}
+	for (int i = 63; i >= 32; i--) {
+		RDX[i] = bitset<32>(3)[i-32];
+	}
+	for (int i = 63; i >= 32; i--) {
+		RSI[i] = bitset<32>(4)[i-32];
+	}
+	for (int i = 63; i >= 32; i--) {
+		RDI[i] = bitset<32>(5)[i-32];
+	}
+	for (int i = 63; i >= 32; i--) {
+		RBP[i] = bitset<32>(6)[i-32];
+	}
+	for (int i = 63; i >= 32; i--) {
+		RSP[i] = bitset<32>(7)[i-32];
+	}
 }
 
 DWORD64 Register::getRegister(std::string request)

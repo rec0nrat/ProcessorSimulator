@@ -254,16 +254,14 @@ bool Control::enterCommand() {
 	}
 
 	if (cmd == "PUSH") {	//push a value on to stack
-		m_Memory.push();
+		//m_Memory.push();
 		enterCommand();
 	}
 
 	if (cmd == "POP") {		//pop a value off of stack
-		m_Memory.pop();
+		//m_Memory.pop();
 		enterCommand();
 	}
-
-
 
 	if (!Found) {
 		cout << "Invalid Command!!! Type 'help' for list of commands." << endl;
