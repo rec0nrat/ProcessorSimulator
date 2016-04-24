@@ -32,7 +32,7 @@ bitset<32> Memory::pop() {
 }
 
 void Memory::printMemContent(short addressRef) {
-	
+	myAddress 
 }
 
 void Memory::printAllMemory() {
@@ -103,6 +103,3 @@ Memory::~Memory(){
 		if (q) delete p;
 	}
 	*/
-
-
-
