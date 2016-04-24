@@ -25,8 +25,6 @@ namespace reg {
 		std::string Bptr[5] = { "RBP", "EBP", "BP", "BPH", "BPL" };
 		std::string Sptr[5] = { "RSP", "ESP", "SP", "SH", "SL" };
 
-		bitset<64> mem;
-
 		bitset<64> RAX;
 		bitset<64> RBX;
 		bitset<64> RCX;
@@ -42,6 +40,7 @@ namespace reg {
 
 		DWORD64 getRegister(std::string request);
 		DWORD64 getRegister(std::string request, bool * error);
+		bitset<32> Register::getRegisterAddress(std::string request, bool * error);
 
 		DWORD64 getRAX();
 		DWORD64 getRBX();
@@ -59,6 +58,7 @@ namespace reg {
 		void DumpRegsDec();
 
 		void changeRegister(std::string reg, DWORD64 value);
+		void changeRegister(std::string reg, DWORD64 value, bool * error);
 
 		~Register();
 

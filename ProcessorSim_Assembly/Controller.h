@@ -16,6 +16,20 @@ namespace processor_sim {
 		const std::string array16[8] = { "AX",  "BX",  "CX",  "DX",  "SI",  "DI",  "BP", "SP" };
 		const std::string array8[16] = { "AH", "BH", "CH", "DH", "SIH", "DIH", "DPH", "SH", "AL",  "BL",  "CL",  "DL",  "SIL",  "DIL",  "BPL", "SL" };
 		const std::string othercmds[1] = { "MAX" };
+
+		void updateMemory();
+
+		void DisplayHeader() {
+
+			cout << "Processor Simulation \n"
+				<< "(Using MASM Instruction Set) \n"
+				<< "Version 1.2 \n"
+				<< endl;
+		}
+
+		void DisplayError() {
+			cout << "Invalid Command!!! Type 'help' for list of commands." << endl;
+		}
 	
 		friend class Memory;
 
@@ -39,8 +53,10 @@ namespace processor_sim {
 		void AND(std::string destination, std::string value);
 		void XOR(std::string destination, std::string value);
 		void LEA(std::string destination, std::string source);
+		void WORD(std::string destination, std::string source);
 	
 		DWORD64 getValue(std::string destination, std::string value, bool * error);
+		bitset<32> getValue(std::string source, bool * error);
 
 		void help();
 
