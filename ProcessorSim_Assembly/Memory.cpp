@@ -24,7 +24,6 @@ void Memory::createVariable(std::string name, bitset<32> data) {
 		variable.name = name;
 		variables.push_back(variable);
 		memory[hp] = data;
-		cout << variable.name << endl;
 	}
 
 }

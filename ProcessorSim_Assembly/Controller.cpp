@@ -45,7 +45,7 @@ bitset<32> Control::getValue(std::string source, bool * error) {
 
 DWORD64 Control::getValue(std::string destination ,std::string source, bool * error) {
 
-	DWORD returnVal = 0;
+	DWORD64 returnVal = 0;
 	
 	for (int i = 0; i < 8; i++) {
 
@@ -193,7 +193,7 @@ void Control::updateMemory() {
 	m_Memory.store(tempLoc, tempData);
 }
 
-void Control::WORD(std::string destination, std::string source) {
+void Control::DWORD(std::string destination, std::string source) {
 	bool error = false;
 	bitset<32> tempData = getValue(source, &error);
 	if (!error) m_Memory.createVariable(destination, tempData);
@@ -226,6 +226,46 @@ void Control::ADD(std::string destination, std::string source){
 	DWORD64 temp1 = m_Register.getRegister(destination, &error);
 	DWORD64 result = m_ALU.ADD(temp1, temp2);
 	if(!error) m_Register.changeRegister(destination, result, &error);
+	if (error) DisplayError();
+	updateMemory();
+}
+
+void Control::MUL(std::string destination, std::string source) {
+	bool error = false;
+	DWORD64 temp2 = getValue(destination, source, &error);
+	DWORD64 temp1 = m_Register.getRegister(destination, &error);
+	DWORD64 result = m_ALU.MUL(temp1, temp2);
+	if (!error) m_Register.changeRegister(destination, result, &error);
+	if (error) DisplayError();
+	updateMemory();
+}
+
+void Control::DIV(std::string destination, std::string source) {
+	bool error = false;
+	DWORD64 temp2 = getValue(destination, source, &error);
+	DWORD64 temp1 = m_Register.getRegister(destination, &error);
+	DWORD64 result = m_ALU.DIV(temp1, temp2);
+	if (!error) m_Register.changeRegister(destination, result, &error);
+	if (error) DisplayError();
+	updateMemory();
+}
+
+void Control::INC(std::string destination) {
+	bool error = false;
+	DWORD64 temp1 = m_Register.getRegister(destination, &error);
+	DWORD64 temp2 = 1;
+	DWORD64 result = m_ALU.ADD(temp1, temp2);
+	if (!error) m_Register.changeRegister(destination, result, &error);
+	if (error) DisplayError();
+	updateMemory();
+}
+
+void Control::DEC(std::string destination) {
+	bool error = false;
+	DWORD64 temp1 = m_Register.getRegister(destination, &error);
+	DWORD64 temp2 = 1;
+	DWORD64 result = m_ALU.SUB(temp1, temp2);
+	if (!error) m_Register.changeRegister(destination, result, &error);
 	if (error) DisplayError();
 	updateMemory();
 }
@@ -339,12 +379,33 @@ bool Control::enterCommand() {
 			}
 		}
 	}
+
 	if (readData != "") cmd = parsedCMDs[0];
 	if (parsedCMDs.size() > 1) location = parsedCMDs[1];
 	if (parsedCMDs.size() > 2) source = parsedCMDs[2];
 
-	if (cmd == "WORD") {
-		WORD(location, source);
+	if (cmd == "INC") {
+		INC(location);
+		Found = true;
+	}
+
+	if (cmd == "DEC") {
+		DEC(location);
+		Found = true;
+	}
+
+	if (cmd == "MUL") {
+		MUL(location, source);
+		Found = true;
+	}
+
+	if (cmd == "DIV") {
+		DIV(location, source);
+		Found = true;
+	}
+
+	if (cmd == "DWORD") {
+		DWORD(location, source);
 		Found = true;
 	}
 

@@ -53,7 +53,11 @@ namespace processor_sim {
 		void AND(std::string destination, std::string value);
 		void XOR(std::string destination, std::string value);
 		void LEA(std::string destination, std::string source);
-		void WORD(std::string destination, std::string source);
+		void DWORD(std::string destination, std::string source);
+		void DEC(std::string destination);
+		void INC(std::string destination);
+		void MUL(std::string destination, std::string source);
+		void DIV(std::string destination, std::string source);
 	
 		DWORD64 getValue(std::string destination, std::string value, bool * error);
 		bitset<32> getValue(std::string source, bool * error);
