@@ -8,6 +8,7 @@ Control::Control() {
 
 Control::~Control() {}
 
+//gets value to be stored in register
 bitset<32> Control::getValue(std::string source, bool * error) {
 
 	bitset<32> returnVal;
@@ -43,6 +44,7 @@ bitset<32> Control::getValue(std::string source, bool * error) {
 
 }
 
+//gets value that will be stored in register
 DWORD64 Control::getValue(std::string destination ,std::string source, bool * error) {
 
 	DWORD returnVal = 0;
@@ -109,11 +111,13 @@ void Control::help() {
 		<< endl;
 }
 
+//updates memory every time a register is changed
 void Control::updateMemory() {
 	bitset<64> tempReg = m_Register.getRAX();
 	bitset<32> tempLoc;
 	bitset<32> tempData;
 
+	//sets the location and register value in memory for each register
 	for (int i = 63; i >= 32; i-- ){
 		tempLoc[i - 32] = tempReg[i];
 	}
@@ -193,6 +197,7 @@ void Control::updateMemory() {
 	m_Memory.store(tempLoc, tempData);
 }
 
+//
 void Control::WORD(std::string destination, std::string source) {
 	bool error = false;
 	bitset<32> tempData = getValue(source, &error);
@@ -200,6 +205,7 @@ void Control::WORD(std::string destination, std::string source) {
 	if (error) DisplayError();
 }
 
+//Move command function that moves a value into a register
 void Control::MOV(std::string destination, std::string source) {
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, source, &error);
@@ -220,6 +226,7 @@ void Control::MOV(std::string destination, std::string source) {
 	updateMemory();
 }
 
+//Add function to add values ans store in a register
 void Control::ADD(std::string destination, std::string source){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, source, &error);	
@@ -230,6 +237,7 @@ void Control::ADD(std::string destination, std::string source){
 	updateMemory();
 }
 
+//subtraction function that subtracts values and stores in a register
 void Control::SUB(std::string destination, std::string source) {
 	bool pass = false;
 	bool error = false;
@@ -241,6 +249,7 @@ void Control::SUB(std::string destination, std::string source) {
 	updateMemory();
 }
 
+//Not command function that reverses the bits in an operand and stores in a register
 void Control::NOT(std::string destination, std::string source){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, source, &error);
@@ -251,6 +260,7 @@ void Control::NOT(std::string destination, std::string source){
 	updateMemory();
 }
 
+//Or command function
 void Control::OR(std::string destination, std::string source){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, source, &error);
@@ -261,6 +271,7 @@ void Control::OR(std::string destination, std::string source){
 	updateMemory();
 }
 
+//And command function
 void Control:: AND (std::string destination, std::string source){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, source, &error);
@@ -271,6 +282,7 @@ void Control:: AND (std::string destination, std::string source){
 	updateMemory();
 }
 
+//xor command function
 void Control:: XOR (std::string destination, std::string source) {
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, source, &error);
@@ -281,6 +293,7 @@ void Control:: XOR (std::string destination, std::string source) {
 	updateMemory();
 }
 
+//LEA command function loads effective address into register
 void Control:: LEA (std::string destination, std::string source) {
 	bool error = false;
 	DWORD64 temp2 = 0;
@@ -310,6 +323,7 @@ void Control:: LEA (std::string destination, std::string source) {
 	updateMemory();
 }
 
+//allows user to enter a command and calls command functions depending on user input
 bool Control::enterCommand() {
 
 	bool Found = false;
