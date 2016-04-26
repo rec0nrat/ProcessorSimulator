@@ -4,14 +4,10 @@ c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.
 c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(38): warning C4101: 'e': unreferenced local variable
 c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(62): warning C4018: '<': signed/unsigned mismatch
 c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(86): warning C4101: 'e': unreferenced local variable
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(208): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(328): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(338): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(373): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(374): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(376): warning C4018: '<': signed/unsigned mismatch
-  ALU.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  main.cpp
+c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(217): warning C4018: '<': signed/unsigned mismatch
+c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(337): warning C4018: '<': signed/unsigned mismatch
+c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(347): warning C4018: '<': signed/unsigned mismatch
+c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(382): warning C4018: '<': signed/unsigned mismatch
+c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(383): warning C4018: '<': signed/unsigned mismatch
+c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(385): warning C4018: '<': signed/unsigned mismatch
   ProcessorSim_Assembly.vcxproj -> C:\Users\Rec0nRat\Documents\ProcessorSimulator\Debug\ProcessorSim_Asssembly.exe

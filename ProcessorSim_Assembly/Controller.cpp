@@ -101,11 +101,20 @@ void Control::help() {
 		<< "XOR - Bitwise exclusive or a register by a value\n"
 		<< "NOT - Bitwise not a register\n"
 		<< "SUB - Subtract a value from a register\n"
+		<< "MUL - Multiply a value from a register\n"
+		<< "DIV - Divide a value from a register\n"
+		<< "INC - Increment a register\n"
+		<< "DEC - Decrement a register\n"
+		<< "DWORD - Creates a variable\n"
 		<< "Type 'MEMDUMP' to display memory\n"
 		<< "LEA - Loads effective address to a register\n"
 		<< "Type 'clear' to clear the screen.\n"
 		<< "Type 'reg64' 'reg32' 'reg16' 'reg8' to view registers\n"
 		<< "Type 'EXIT' to leave the program\n"
+		<< "--------------------------------------------------------\n"
+		<< "                   Instruction Template                 \n"
+		<< "'command' 'destination reg' 'source reg/variable/value' \n"
+		<< "--------------------------------------------------------\n"
 		<< endl;
 }
 
