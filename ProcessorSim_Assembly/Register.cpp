@@ -3,7 +3,7 @@
 using namespace reg;
 
 Register::Register() {
-
+	//64 bit registers
 	for (int i = 63; i >= 32; i--) {
 		RAX[i] = bitset<32>(0)[i-32];
 	}
@@ -30,6 +30,7 @@ Register::Register() {
 	}
 }
 
+//getting address of registers and checking for errors
 bitset<32> Register::getRegisterAddress(std::string request, bool * error) {
 
 	for (int i = 0; i < 6; i++) {
@@ -64,6 +65,7 @@ bitset<32> Register::getRegisterAddress(std::string request, bool * error) {
 	return 0;
 }
 
+//
 DWORD64 Register::getRegister(std::string request)
 {
 	
@@ -132,6 +134,7 @@ DWORD64 Register::getRegister(std::string request, bool * error)
 	return 0;
 }
 
+//getting specific registers RAX, RBX, RCX etc... and returning lower 32 bit registers
 DWORD64 Register::getRAX()
 {
 	return RAX.to_ullong();
@@ -180,6 +183,7 @@ DWORD64 Register::getRSP()
 	//return EDI;
 }
 
+//Register dump of data
 void Register::DumpRegsDec() {
 	cout << "Current Decimal Register Data" << endl;
 	cout << "EAX: " << RAX.to_ullong() << endl;
@@ -190,6 +194,7 @@ void Register::DumpRegsDec() {
 	cout << "EDI: " << RDI.to_ullong() << endl;
 }
 
+//Register dump of 64 bit register
 void Register::DumpRegs64() {
 	cout << "Current 64-bit Register Data" << endl;
 	cout << "EAX: " << RAX << endl;
@@ -200,6 +205,7 @@ void Register::DumpRegs64() {
 	cout << "EDI: " << RDI << endl;
 }
 
+//Register dump of 32 bit register
 void Register::DumpRegs32() {
 	cout << "Current 32-bit Register Data" << endl;
 
@@ -230,6 +236,7 @@ void Register::DumpRegs32() {
 	cout << endl;
 }
 
+//Register dump of 16 bit register
 void Register::DumpRegs16() {
 
 	cout << "Current 16-bit Register Data" << endl;
@@ -261,6 +268,7 @@ void Register::DumpRegs16() {
 	cout << endl;
 }
 
+//Register dump of 8 bit register
 void Register::DumpRegs8() {
 	cout << "Current 8-bit Register Data" << endl;
 
@@ -291,6 +299,8 @@ void Register::DumpRegs8() {
 	cout << endl;
 }
 
+//checks register and then
+//checks if value is 32, 16 or 8 bits and stores in appropriate register
 void Register::changeRegister(std::string reg, DWORD64 value, bool * error) {
 	getRegister(reg, error);
 	// A register
@@ -433,6 +443,7 @@ void Register::changeRegister(std::string reg, DWORD64 value, bool * error) {
 
 }
 
+//changes register and stores value according to its bits
 void Register::changeRegister(std::string reg, DWORD64 value){
 
 	// A register

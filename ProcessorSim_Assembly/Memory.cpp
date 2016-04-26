@@ -3,13 +3,14 @@
 using namespace memory;
 
 Memory::Memory() {
-
+	//array of memory
 	this->capacity = 50;
 	this->memory = new bitset<32>[capacity];
 	this->sp = capacity;
 	this->hp = 7;
 }
 
+//creates variable for heap with register name and data being stored
 void Memory::createVariable(std::string name, bitset<32> data) {
 
 	hp++;
@@ -28,6 +29,7 @@ void Memory::createVariable(std::string name, bitset<32> data) {
 
 }
 
+//push onto stack
 void Memory::push(bitset<32> data) {
 
 	sp--;
@@ -40,6 +42,7 @@ void Memory::push(bitset<32> data) {
 	}
 }
 
+//pop off of stack LIFO
 bitset<32> Memory::pop() {
 
 	if (sp == capacity) {
@@ -54,6 +57,7 @@ bitset<32> Memory::pop() {
 	}
 }
 
+//prints out everything stored in memory
 void Memory::printAllMemory() {
 
 	for (int i = 0; i < capacity; i++) {
@@ -116,6 +120,7 @@ void Memory::printAllMemory() {
 	}
 }
 
+//stores registers and data in memory heap 
 void Memory::store(bitset<32> address, bitset<32> data, bool * error) {
 	if (address.to_ullong() >= capacity) {
 		*error = true;
@@ -128,6 +133,7 @@ void Memory::store(bitset<32> address, bitset<32> data) {
 	memory[address.to_ullong()] = data;
 }
 
+//loads register address and data in memory heap
 bitset<32> Memory::load(bitset<32> address, bool * error) {
 	if (address.to_ullong() >= capacity) {
 		*error = true;
@@ -141,6 +147,7 @@ bitset<32> Memory::load(bitset<32> address) {
 	return memory[address.to_ullong()];
 }
 
+//deletes memory array
 Memory::~Memory() {
 	delete[] memory;
 }
