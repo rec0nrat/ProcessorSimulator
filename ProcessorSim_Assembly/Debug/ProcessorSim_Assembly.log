@@ -1,13 +1,4 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (ProcessorSim_Asssembly.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Controller.cpp
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(29): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(38): warning C4101: 'e': unreferenced local variable
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(62): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(86): warning C4101: 'e': unreferenced local variable
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(217): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(337): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(347): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(382): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(383): warning C4018: '<': signed/unsigned mismatch
-c:\users\rec0nrat\documents\processorsimulator\processorsim_assembly\controller.cpp(385): warning C4018: '<': signed/unsigned mismatch
+  Register.cpp
+  LINK : C:\Users\Rec0nRat\Documents\ProcessorSimulator\Debug\ProcessorSim_Asssembly.exe not found or not built by the last incremental link; performing full link
   ProcessorSim_Assembly.vcxproj -> C:\Users\Rec0nRat\Documents\ProcessorSimulator\Debug\ProcessorSim_Asssembly.exe
