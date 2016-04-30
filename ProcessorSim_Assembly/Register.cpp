@@ -30,7 +30,7 @@ Register::Register() {
 	}
 }
 
-//getting address of registers and checking for errors
+//getting address of registers
 bitset<32> Register::getRegisterAddress(std::string request, bool * error) {
 
 	for (int i = 0; i < 6; i++) {
@@ -183,7 +183,7 @@ DWORD64 Register::getRSP()
 	//return EDI;
 }
 
-//Register dump of data
+//Register dump registers in decimal
 void Register::DumpRegsDec() {
 	cout << "Current Decimal Register Data" << endl;
 	cout << "EAX: " << RAX.to_ullong() << endl;
@@ -194,7 +194,7 @@ void Register::DumpRegsDec() {
 	cout << "EDI: " << RDI.to_ullong() << endl;
 }
 
-//Register dump of 64 bit register
+//Register dump of 64 bit registers
 void Register::DumpRegs64() {
 	cout << "Current 64-bit Register Data" << endl;
 	cout << "EAX: " << RAX << endl;
@@ -205,7 +205,7 @@ void Register::DumpRegs64() {
 	cout << "EDI: " << RDI << endl;
 }
 
-//Register dump of 32 bit register
+//Register dump of 32 bit registers
 void Register::DumpRegs32() {
 	cout << "Current 32-bit Register Data" << endl;
 
@@ -236,7 +236,7 @@ void Register::DumpRegs32() {
 	cout << endl;
 }
 
-//Register dump of 16 bit register
+//Register dump of 16 bit registers
 void Register::DumpRegs16() {
 
 	cout << "Current 16-bit Register Data" << endl;
@@ -274,27 +274,27 @@ void Register::DumpRegs8() {
 
 	cout << "AL:  ";
 	for (int i = 7; i >= 0; i--) {
-		cout <<RAX[i];
+		cout <<RAX[i];	//dumps RAX
 	}
 	cout << "\nBL:  ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RBX[i];
+		cout << RBX[i];	//dumps RBX
 	}
 	cout << "\nCL:  ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RCX[i];
+		cout << RCX[i];	//dumps RCX
 	}
 	cout << "\nDL:  ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RDX[i];
+		cout << RDX[i];	//dumps RDX
 	}
 	cout << "\nSIL: ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RSI[i];
+		cout << RSI[i];	//dumps RSI
 	}
 	cout << "\nDIL: ";
 	for (int i = 7; i >= 0; i--) {
-		cout << RDI[i];
+		cout << RDI[i];	//dumps RDI
 	}
 	cout << endl;
 }
@@ -304,138 +304,138 @@ void Register::DumpRegs8() {
 void Register::changeRegister(std::string reg, DWORD64 value, bool * error) {
 	getRegister(reg, error);
 	// A register
-	if (reg == "RAX") RAX = value;
-	if (reg == "EAX") {
+	if (reg == "RAX") RAX = value;	//stores value in RAX
+	if (reg == "EAX") {				//stores value in EAX
 		for (int i = 31; i >= 0; i--) {
-			RAX[i] = bitset<32>(value)[i];
+			RAX[i] = bitset<32>(value)[i];	
 		}
 	}
-	if (reg == "AX") {
+	if (reg == "AX") {				//stores value in AX
 		for (int i = 15; i >= 0; i--) {
-			RAX[i] = bitset<16>(value)[i];
+			RAX[i] = bitset<16>(value)[i]; 
 		}
 	}
-	if (reg == "AH") {
+	if (reg == "AH") {				//stores value in AH
 		for (int i = 15; i >= 8; i--) {
 			RAX[i] = bitset<8>(value)[i - 8];
 		}
 	}
-	if (reg == "AL") {
+	if (reg == "AL") {				//stores value in AL
 		for (int i = 7; i >= 0; i--) {
 			RAX[i] = bitset<8>(value)[i];
 		}
 	}
 
 	// B register
-	if (reg == "RBX") RBX = value;
-	if (reg == "EBX") {
+	if (reg == "RBX") RBX = value;	//stores value in RBX
+	if (reg == "EBX") {				//stores value in EBX
 		for (int i = 31; i >= 0; i--) {
 			RBX[i] = bitset<32>(value)[i];
 		}
 	}
-	if (reg == "BX") {
+	if (reg == "BX") {				//stores value in BX
 		for (int i = 15; i >= 0; i--) {
 			RBX[i] = bitset<16>(value)[i];
 		}
 	}
-	if (reg == "BH") {
+	if (reg == "BH") {				//stores value in BH
 		for (int i = 15; i >= 8; i--) {
 			RBX[i] = bitset<8>(value)[i - 8];
 		}
 	}
-	if (reg == "BL") {
+	if (reg == "BL") {				//stores value in BL
 		for (int i = 7; i >= 0; i--) {
 			RBX[i] = bitset<8>(value)[i];
 		}
 	}
 
 	//C register
-	if (reg == "RCX") RCX = value;
-	if (reg == "ECX") {
+	if (reg == "RCX") RCX = value;	//stores value in RCX
+	if (reg == "ECX") {				//stores value in ECX
 		for (int i = 31; i >= 0; i--) {
 			RCX[i] = bitset<32>(value)[i];
 		}
 	}
-	if (reg == "CX") {
+	if (reg == "CX") {				//stores value in CX
 		for (int i = 15; i >= 0; i--) {
 			RCX[i] = bitset<16>(value)[i];
 		}
 	}
-	if (reg == "CH") {
+	if (reg == "CH") {				//stores value in CH
 		for (int i = 15; i >= 8; i--) {
 			RCX[i] = bitset<8>(value)[i - 8];
 		}
 	}
-	if (reg == "CL") {
+	if (reg == "CL") {				//stores value in CL
 		for (int i = 7; i >= 0; i--) {
 			RCX[i] = bitset<8>(value)[i];
 		}
 	}
 
 	// D register
-	if (reg == "RDX") RDX = value;
-	if (reg == "EDX") {
+	if (reg == "RDX") RDX = value;	//stores value in RDX
+	if (reg == "EDX") {				//stores value in EDX
 		for (int i = 31; i >= 0; i--) {
 			RDX[i] = bitset<32>(value)[i];
 		}
 	}
-	if (reg == "DX") {
+	if (reg == "DX") {				//stores value in DX
 		for (int i = 15; i >= 0; i--) {
 			RDX[i] = bitset<16>(value)[i];
 		}
 	}
-	if (reg == "DH") {
+	if (reg == "DH") {				//stores value in DH
 		for (int i = 15; i >= 8; i--) {
 			RDX[i] = bitset<8>(value)[i - 8];
 		}
 	}
-	if (reg == "DL") {
+	if (reg == "DL") {				//stores value in DL
 		for (int i = 7; i >= 0; i--) {
 			RDX[i] = bitset<8>(value)[i];
 		}
 	}
 
 	// Source index register
-	if (reg == "RSI") RSI = value;
-	if (reg == "ESI") {
+	if (reg == "RSI") RSI = value;	//stores value in RSI
+	if (reg == "ESI") {				//stores value in ESI
 		for (int i = 31; i >= 0; i--) {
 			RSI[i] = bitset<32>(value)[i];
 		}
 	}
-	if (reg == "SI") {
+	if (reg == "SI") {				//stores value in SI
 		for (int i = 15; i >= 0; i--) {
 			RSI[i] = bitset<16>(value)[i];
 		}
 	}
-	if (reg == "SIH") {
+	if (reg == "SIH") {				//stores value in SIH
 		for (int i = 15; i >= 8; i--) {
 			RSI[i] = bitset<8>(value)[i - 8];
 		}
 	}
-	if (reg == "SIL") {
+	if (reg == "SIL") {				//stores value in SIL
 		for (int i = 7; i >= 0; i--) {
 			RSI[i] = bitset<8>(value)[i];
 		}
 	}
 
 	// Destination index register
-	if (reg == "RDI") RDI = value;
-	if (reg == "EDI") {
+	if (reg == "RDI") RDI = value;	//stores value in RDI
+	if (reg == "EDI") {				//stores value in EDI
 		for (int i = 31; i >= 0; i--) {
 			RDI[i] = bitset<32>(value)[i];
 		}
 	}
-	if (reg == "DI") {
+	if (reg == "DI") {				//stores value in DI
 		for (int i = 15; i >= 0; i--) {
 			RDI[i] = bitset<16>(value)[i];
 		}
 	}
-	if (reg == "DIH") {
+	if (reg == "DIH") {				//stores value in DIH
 		for (int i = 15; i >= 8; i--) {
 			RDI[i] = bitset<8>(value)[i - 8];
 		}
 	}
-	if (reg == "DL") {
+	if (reg == "DL") {				//stores value in DL
 		for (int i = 7; i >= 0; i--) {
 			RDI[i] = bitset<8>(value)[i];
 		}
@@ -446,7 +446,7 @@ void Register::changeRegister(std::string reg, DWORD64 value, bool * error) {
 //changes register and stores value according to its bits
 void Register::changeRegister(std::string reg, DWORD64 value){
 
-	// A register
+	// A registers
 	if (reg == "RAX") RAX = value;
 	if (reg == "EAX") {
 		for (int i = 31; i >= 0; i--) {
@@ -469,7 +469,7 @@ void Register::changeRegister(std::string reg, DWORD64 value){
 		}
 	}
 
-	// B register
+	// B registers
 	if (reg == "RBX") RBX = value;
 	if (reg == "EBX") {
 		for (int i = 31; i >= 0; i--) {
@@ -492,7 +492,7 @@ void Register::changeRegister(std::string reg, DWORD64 value){
 		}
 	}
 
-	//C register
+	//C registers
 	if (reg == "RCX") RCX = value;
 	if (reg == "ECX") {
 		for (int i = 31; i >= 0; i--) {
@@ -515,7 +515,7 @@ void Register::changeRegister(std::string reg, DWORD64 value){
 		}
 	}
 
-	// D register
+	// D registers
 	if (reg == "RDX") RDX = value;
 	if (reg == "EDX") {
 		for (int i = 31; i >= 0; i--) {

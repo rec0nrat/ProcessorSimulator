@@ -8,7 +8,7 @@ int main(){
 
 	Control Processor; //create an instance of a processor
 
-	DisplayHeader();
+	DisplayHeader();	//display header message
 
 	cout << endl << "** Enter 'help' for a list of commands **\n" << endl;
 

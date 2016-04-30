@@ -13,6 +13,7 @@ bitset<32> Control::getValue(std::string source, bool * error) {
 
 	bitset<32> returnVal;
 
+	
 	for (int i = 0; i < 8; i++) {
 
 		if (source == array32[i] || source == array16[i]) {
@@ -20,6 +21,7 @@ bitset<32> Control::getValue(std::string source, bool * error) {
 		}
 	}
 
+	
 	for (int i = 0; i < 16; i++) {
 
 		if (source == array8[i]) {
@@ -44,7 +46,7 @@ bitset<32> Control::getValue(std::string source, bool * error) {
 
 }
 
-//gets value that will be stored in register
+//gets value that will be stored as DWORD into a register
 DWORD64 Control::getValue(std::string destination ,std::string source, bool * error) {
 
 	DWORD returnVal = 0;
@@ -92,6 +94,7 @@ DWORD64 Control::getValue(std::string destination ,std::string source, bool * er
 	}
 }
 
+//help menu function that displays all available commands
 void Control::help() {
 	bool listCmds = false;
 	//cout << "Commands should look like:\ncommand (space) destination (comma), source (or another register)" << endl;
@@ -117,7 +120,9 @@ void Control::updateMemory() {
 	bitset<32> tempLoc;
 	bitset<32> tempData;
 
+
 	//sets the location and register value in memory for each register
+	//for loops take temp location and value and store in the appropriate register
 	for (int i = 63; i >= 32; i-- ){
 		tempLoc[i - 32] = tempReg[i];
 	}
@@ -126,7 +131,17 @@ void Control::updateMemory() {
 	}
 	m_Memory.store(tempLoc, tempData);
 
-	tempReg = m_Register.getRBX();
+	tempReg = m_Register.getRBX();	//RBX
+	
+	for (int i = 63; i >= 32; i--) {
+		tempLoc[i - 32] = tempReg[i];
+	}
+	for (int i = 31; i >= 0; i--) {
+		tempData[i] = tempReg[i];
+	}
+	m_Memory.store(tempLoc, tempData);
+
+	tempReg = m_Register.getRCX();	//RCX
 
 	for (int i = 63; i >= 32; i--) {
 		tempLoc[i - 32] = tempReg[i];
@@ -136,7 +151,7 @@ void Control::updateMemory() {
 	}
 	m_Memory.store(tempLoc, tempData);
 
-	tempReg = m_Register.getRCX();
+	tempReg = m_Register.getRDX();	//RDX
 
 	for (int i = 63; i >= 32; i--) {
 		tempLoc[i - 32] = tempReg[i];
@@ -146,7 +161,7 @@ void Control::updateMemory() {
 	}
 	m_Memory.store(tempLoc, tempData);
 
-	tempReg = m_Register.getRDX();
+	tempReg = m_Register.getRSI();	//RSI
 
 	for (int i = 63; i >= 32; i--) {
 		tempLoc[i - 32] = tempReg[i];
@@ -156,7 +171,7 @@ void Control::updateMemory() {
 	}
 	m_Memory.store(tempLoc, tempData);
 
-	tempReg = m_Register.getRSI();
+	tempReg = m_Register.getRDI();	//RDI
 
 	for (int i = 63; i >= 32; i--) {
 		tempLoc[i - 32] = tempReg[i];
@@ -166,7 +181,7 @@ void Control::updateMemory() {
 	}
 	m_Memory.store(tempLoc, tempData);
 
-	tempReg = m_Register.getRDI();
+	tempReg = m_Register.getRBP();	//RBP
 
 	for (int i = 63; i >= 32; i--) {
 		tempLoc[i - 32] = tempReg[i];
@@ -176,17 +191,7 @@ void Control::updateMemory() {
 	}
 	m_Memory.store(tempLoc, tempData);
 
-	tempReg = m_Register.getRBP();
-
-	for (int i = 63; i >= 32; i--) {
-		tempLoc[i - 32] = tempReg[i];
-	}
-	for (int i = 31; i >= 0; i--) {
-		tempData[i] = tempReg[i];
-	}
-	m_Memory.store(tempLoc, tempData);
-
-	tempReg = m_Register.getRSP();
+	tempReg = m_Register.getRSP();	//RSP
 
 	for (int i = 63; i >= 32; i--) {
 		tempLoc[i - 32] = tempReg[i];
@@ -197,7 +202,7 @@ void Control::updateMemory() {
 	m_Memory.store(tempLoc, tempData);
 }
 
-//
+//takes value and stores in a variable
 void Control::WORD(std::string destination, std::string source) {
 	bool error = false;
 	bitset<32> tempData = getValue(source, &error);
@@ -226,7 +231,7 @@ void Control::MOV(std::string destination, std::string source) {
 	updateMemory();
 }
 
-//Add function to add values ans store in a register
+//Add function to add values and store in a register
 void Control::ADD(std::string destination, std::string source){
 	bool error = false;
 	DWORD64 temp2 = getValue(destination, source, &error);	
@@ -336,14 +341,16 @@ bool Control::enterCommand() {
 
 	cout << "inline.processor@> ";
 
-	std::getline(cin, readData);
+	std::getline(cin, readData);	//user input
 
 	istringstream strstream(readData);
+	
+	char chars[] = " ,"; //delimeters
 
-	char chars[] = " ,";
+	//checks for delimeters and pushes into string stream
+	for (std::string next; std::getline(strstream, next, ' '); parsedCMDs.push_back(next)); 
 
-	for (std::string next; std::getline(strstream, next, ' '); parsedCMDs.push_back(next));
-
+	//takes vector of parsed commands and switches to uppercase
 	for (int i = 0; i < strlen(chars); i++) {
 		for (int k = 0; k < parsedCMDs.size(); k++) {
 			parsedCMDs[k].erase(std::remove(parsedCMDs[k].begin(), parsedCMDs[k].end(), chars[i]), parsedCMDs[k].end());
@@ -356,89 +363,90 @@ bool Control::enterCommand() {
 	if (readData != "") cmd = parsedCMDs[0];
 	if (parsedCMDs.size() > 1) location = parsedCMDs[1];
 	if (parsedCMDs.size() > 2) source = parsedCMDs[2];
-
+	
+	//checks what command was entered and runs appropriate function
 	if (cmd == "DWORD") {
-		WORD(location, source);
+		WORD(location, source);	//DWORD variable
 		Found = true;
 	}
 
 	if (cmd == "MOV") {
-		MOV(location, source);
+		MOV(location, source);	//Move function
 		Found = true;
 	}
 
 	if (cmd == "ADD") {
-		ADD(location, source);
+		ADD(location, source);	//add function
 		Found = true;
 	}
 
 	if (cmd == "SUB") {
 		
-		SUB(location, source);
+		SUB(location, source);	//subtraction function
 		Found = true;
 	}
 
 	if (cmd == "AND") {
-		AND(location, source);
+		AND(location, source);	//and function
 		Found = true;
 	}
 
 	if (cmd == "OR") {
-		OR (location, source);
+		OR (location, source);	//or function
 		Found = true;
 	}
 
 	if (cmd == "NOT") {
-		NOT (location, source);
+		NOT (location, source);	//not function
 		Found = true;
 	}
 
 	if (cmd == "XOR") {
-		XOR (location, source);
+		XOR (location, source); //xor function
 		Found = true;
 	}
 
-	if (cmd == "CLEAR") {
+	if (cmd == "CLEAR") {	//clears screen
 		system("cls");
 		DisplayHeader();
 		Found = true;
 	}
 
-	if (cmd == "HELP") {
+	if (cmd == "HELP") {	//displays help menu
 		help();
 		Found = true;
 	}
 
 	if (cmd == "REG64") {
-		m_Register.DumpRegs64();
+		m_Register.DumpRegs64(); //displays 64 bit registers
 		Found = true;
 	}
 
 	if (cmd == "REG32") {
-		m_Register.DumpRegs32();
+		m_Register.DumpRegs32();	//displays 32 bit registers
 		Found = true;
 	}
 
 	if (cmd == "REG16") {
-		m_Register.DumpRegs16();
+		m_Register.DumpRegs16();	//displays 16 bit registers
 		Found = true;
 	}
 
 	if (cmd == "REG8") {
-		m_Register.DumpRegs8();
+		m_Register.DumpRegs8();		//displays 8 bit registers
 		Found = true;
 	}
 
 	if (cmd == "REGD") {
-		m_Register.DumpRegsDec();
+		m_Register.DumpRegsDec(); //displays registers in decimal format
 		Found = true;
 	}
 
-	if (cmd == "EXIT") {
+	if (cmd == "EXIT") {		//exits program
 		return false;
 	}
 
-	if (cmd == "MEMDUMP") {
+	if (cmd == "MEMDUMP") {		//dumps all memory and displays all memory
 		cout << "Initiate memory dump!" << endl;
 		m_Memory.printAllMemory();
 		Found = true;
@@ -471,7 +479,7 @@ bool Control::enterCommand() {
 		Found = true;
 	}
 
-	if (!Found && readData != "") {
+	if (!Found && readData != "") {	//displays error message if bad command
 		DisplayError();
 	}
 

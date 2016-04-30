@@ -15,7 +15,7 @@ namespace reg {
 	class Register {
 
 	private:
-
+		//Retisters
 		std::string Areg[5] = { "RAX", "EAX", "AX", "AH", "AL" };
 		std::string Breg[5] = { "RBX", "EBX", "BX", "BH", "BL" };
 		std::string Creg[5] = { "RCX", "ECX", "CX", "CH", "CL" };

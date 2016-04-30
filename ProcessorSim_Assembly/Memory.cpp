@@ -15,16 +15,16 @@ void Memory::createVariable(std::string name, bitset<32> data) {
 
 	hp++;
 
-	if (hp == sp) {
+	if (hp == sp) {	//checks if heap pointer and stackpointer are at the same point in memory
 		cout << "*** Memory Overflow! **" << endl;
 		hp--;
 	}
-	else {
+	else {		//else it creates a variable
 		MemLoc variable;
-		variable.address = hp;
-		variable.name = name;
+		variable.address = hp;	//sets heap pointer to variable address
+		variable.name = name;	//sets variable name
 		variables.push_back(variable);
-		memory[hp] = data;
+		memory[hp] = data;		//data stored in memory array at heap pointer address
 		cout << variable.name << endl;
 	}
 
@@ -34,11 +34,11 @@ void Memory::createVariable(std::string name, bitset<32> data) {
 void Memory::push(bitset<32> data) {
 
 	sp--;
-	if (sp == hp) {
+	if (sp == hp) {	//checks if stack pointer at same point as heap pointer in memory
 		cout << "*** Stack Overflow! **" << endl;
 		sp++;
 	}
-	else {
+	else {		//else data is stored at stack pointer address in memory array
 		memory[sp] = data;
 	}
 }
@@ -46,11 +46,11 @@ void Memory::push(bitset<32> data) {
 //pop off of stack LIFO
 bitset<32> Memory::pop() {
 
-	if (sp == capacity) {
+	if (sp == capacity) {	//checks if stack is empty
 		cout << "*** Stack Empty! ***" << endl;
 		return bitset<32>(0);
 	}
-	else {
+	else {	//else temp bitset is at stack pointer of memory array
 		bitset<32> temp = memory[sp];
 		memory[sp] = 0;
 		sp++;
@@ -72,7 +72,7 @@ void Memory::printAllMemory() {
 
 		cout << memory[i];
 
-		switch (i) {
+		switch (i) {	
 		case 0:
 			cout << " <=RAX";
 			break;
@@ -100,7 +100,7 @@ void Memory::printAllMemory() {
 		default:
 			break;
 		}
-
+		
 		for (int index = 0; index < variables.size(); index++) {
 			if (variables[index].address.to_ullong() == i) {
 				cout << " <=" << variables[index].name;
@@ -121,20 +121,20 @@ void Memory::printAllMemory() {
 	}
 }
 
-//stores registers and data in memory heap 
+//stores registers and data in memory array
 void Memory::store(bitset<32> address, bitset<32> data, bool * error) {
 	if (address.to_ullong() >= capacity) {
 		*error = true;
 	}
 	memory[address.to_ullong()] = data;
 }
-
+//stores registers and data in memory array
 void Memory::store(bitset<32> address, bitset<32> data) {
 	
 	memory[address.to_ullong()] = data;
 }
 
-//loads register address and data in memory heap
+//loads register address and data in memory array
 bitset<32> Memory::load(bitset<32> address, bool * error) {
 	if (address.to_ullong() >= capacity) {
 		*error = true;
@@ -142,7 +142,7 @@ bitset<32> Memory::load(bitset<32> address, bool * error) {
 	}
 	return memory[address.to_ullong()];
 }
-
+//loads register address and data in memory array
 bitset<32> Memory::load(bitset<32> address) {
 
 	return memory[address.to_ullong()];

@@ -8,7 +8,7 @@ namespace alu {
 	private:
 
 	public:
-		
+		//ALU commands
 		DWORD64 AND (DWORD64 src, DWORD64 dest);
 		DWORD64 ADD(DWORD64 src, DWORD64 dest);
 		DWORD64 NOT (DWORD64 src, DWORD64 dest);
