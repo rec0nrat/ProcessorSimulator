@@ -357,7 +357,7 @@ bool Control::enterCommand() {
 	if (parsedCMDs.size() > 1) location = parsedCMDs[1];
 	if (parsedCMDs.size() > 2) source = parsedCMDs[2];
 
-	if (cmd == "WORD") {
+	if (cmd == "DWORD") {
 		WORD(location, source);
 		Found = true;
 	}
